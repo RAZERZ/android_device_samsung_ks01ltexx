@@ -4,6 +4,9 @@ Copyright 2015-2016 - The CyanogenMod Project
 Device configuration for Samsung Galaxy S4 LTE-A (GT-I9506).
 
 WORK IN PROGRESS. WILL EAT YOUR CAT.
+
+//TODO: Copy roomservice.xml for .repo/local_manifests to comply with carbonroms strange remotes (it ain't even remotely funny)
+
 ------------------------------------------------------------------
 
   - For building LineageOS 14.0, create '.repo/local_manifests/roomservice.xml'
