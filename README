@@ -87,36 +87,61 @@ Still working on it though!
 
 Here is the full output of the error:
 
-
 FAILED: /home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/audio.primary.msm8974_intermediates/LINKED/audio.primary.msm8974.so 
 /bin/bash -c "(echo \"target SharedLib: audio.primary.msm8974 (/home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/audio.primary.msm8974_intermediates/LINKED/audio.primary.msm8974.so)\" ) && (mkdir -p /home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/audio.primary.msm8974_intermediates/LINKED/ ) && (/usr/bin/ccache prebuilts/clang/host/linux-x86/clang-2690385/bin/clang++ -nostdlib -Wl,-soname,audio.primary.msm8974.so -Wl,--gc-sections -shared  -L/home/rami/android/carbon/out/target/product/ks01ltexx/obj/lib /home/rami/android/carbon/out/target/product/ks01ltexx/obj/lib/crtbegin_so.o             /home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/audio.primary.msm8974_intermediates/audio_hw.o /home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/audio.primary.msm8974_intermediates/voice.o /home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/audio.primary.msm8974_intermediates/platform_info.o /home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/audio.primary.msm8974_intermediates/msm8974/platform.o /home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/audio.primary.msm8974_intermediates/audio_extn/audio_extn.o /home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/audio.primary.msm8974_intermediates/audio_extn/hfp.o /home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/audio.primary.msm8974_intermediates/voice_extn/compress_voip.o /home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/audio.primary.msm8974_intermediates/msm8974/hw_info.o        -Wl,--whole-archive   -Wl,--no-whole-archive   /home/rami/android/carbon/out/target/product/ks01ltexx/obj/STATIC_LIBRARIES/libunwind_llvm_intermediates/libunwind_llvm.a /home/rami/android/carbon/out/target/product/ks01ltexx/obj/STATIC_LIBRARIES/libcompiler_rt-extras_intermediates/libcompiler_rt-extras.a   prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/bin/../lib/gcc/arm-linux-androideabi/4.9/../../../../arm-linux-androideabi/lib/libatomic.a prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/bin/../lib/gcc/arm-linux-androideabi/4.9/libgcc.a -llog -lcutils -lhardware -ltinyalsa -ltinycompress -laudioroute -ldl -lexpat -lc++ -ldl -lc -lm  -o /home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/audio.primary.msm8974_intermediates/LINKED/audio.primary.msm8974.so   -Wl,-z,noexecstack -Wl,-z,relro -Wl,-z,now -Wl,--build-id=md5 -Wl,--warn-shared-textrel -Wl,--fatal-warnings -Wl,--icf=safe -Wl,--hash-style=gnu -Wl,--no-undefined-version -Wl,--no-fix-cortex-a8    -target arm-linux-androideabi -Bprebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/arm-linux-androideabi/bin   -Wl,--exclude-libs,libunwind_llvm.a -Wl,--no-undefined /home/rami/android/carbon/out/target/product/ks01ltexx/obj/lib/crtend_so.o )"
 target SharedLib: audio.primary.msm8974 (/home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/audio.primary.msm8974_intermediates/LINKED/audio.primary.msm8974.so)
 hardware/qcom/audio-caf/msm8974/hal/audio_hw.c:2112: error: undefined reference to 'compress_set_next_track_param'
 clang++: error: linker command failed with exit code 1 (use -v to see invocation)
-[ 43% 9693/22139] build /home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/libalsautils_intermediates/alsa_device_profile.o
-target thumb C: libalsautils <= system/media/alsa_utils/alsa_device_profile.c
-[ 43% 9693/22139] build /home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/audio.usb.default_intermediates/audio_hal.o
-target thumb C: audio.usb.default <= hardware/libhardware/modules/usbaudio/audio_hal.c
-[ 43% 9693/22139] build /home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/audio.r_submix.default_intermediates/audio_hw.o
-target thumb C++: audio.r_submix.default <= hardware/libhardware/modules/audio_remote_submix/audio_hw.cpp
-[ 43% 9693/22139] build /home/rami/android/carbon/out/target/common/obj/JAVA_LIBRARIES/services.core_intermediates/classes.jack
-Building with Jack: /home/rami/android/carbon/out/target/common/obj/JAVA_LIBRARIES/services.core_intermediates/classes.jack
-[ 43% 9693/22139] build /home/rami/android/carbon/out/target/product/ks01ltexx/obj/APPS/framework-res_intermediates/package.apk
-target Package: framework-res (/home/rami/android/carbon/out/target/product/ks01ltexx/obj/APPS/framework-res_intermediates/package.apk)
+[  5% 305/5473] build /home/rami/android/carbon/out/host/common/obj/JAVA_LIBRARIES/ahat_intermediates/classes-full-debug.jar
+host Java: ahat (/home/rami/android/carbon/out/host/common/obj/JAVA_LIBRARIES/ahat_intermediates/classes)
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+[  5% 305/5473] build /home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/libwifi-service_intermediates/jni/jni_helper.o
+target thumb C++: libwifi-service <= frameworks/opt/net/wifi/service/jni/jni_helper.cpp
+[  5% 305/5473] build /home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/libwifi-service_intermediates/jni/com_android_server_wifi_WifiNative.o
+target thumb C++: libwifi-service <= frameworks/opt/net/wifi/service/jni/com_android_server_wifi_WifiNative.cpp
+[  5% 305/5473] build /home/rami/android/carbon/out/target/common/obj/APPS/framework-res_intermediates/package-export.apk
+target Export Resources: framework-res (/home/rami/android/carbon/out/target/common/obj/APPS/framework-res_intermediates/package-export.apk)
 warning: string 'candidates_style' has no default translation.
-warning: string 'candidates_style' is missing 41 required localizations: az_AZ be_BY bn_BD bs_BA en_AU en_CA en_GB en_IN en_NZ en_SG en_US eo_EU et_EE eu_ES gl_ES gu_IN hy_AM is_IS ka_GE kk_KZ km_KH kn_IN ky_KG lo_LA mk_MK ml_IN mn_MN mr_IN ms_MY my_MM ne_NP pa_IN si_LK sq_AL ta_IN te_IN ur_PK uz_UZ zh_CN zh_HK zh_TW
 warning: string 'gsm_alphabet_default_charset' has no default translation.
-warning: string 'gsm_alphabet_default_charset' is missing 90 required localizations: af_ZA am_ET ar_EG az_AZ be_BY bg_BG bn_BD bs_BA ca_ES cs_CZ da_DK de_AT de_CH de_DE de_LI el_GR en_AU en_CA en_GB en_IN en_NZ en_SG en_US eo_EU es_ES es_US et_EE eu_ES fa_IR fi_FI fr_BE fr_CA fr_CH fr_FR gl_ES gu_IN hi_IN hr_HR hu_HU hy_AM in_ID is_IS it_CH it_IT iw_IL ja_JP ka_GE kk_KZ km_KH kn_IN ky_KG lo_LA lt_LT lv_LV mk_MK ml_IN mn_MN mr_IN ms_MY my_MM nb_NO ne_NP nl_BE nl_NL pa_IN pl_PL pt_BR pt_PT ro_RO ru_RU si_LK sk_SK sl_SI sq_AL sr_RS sv_SE sw_TZ ta_IN te_IN th_TH tl_PH tr_TR uk_UA ur_PK uz_UZ vi_VN zh_CN zh_HK zh_TW zu_ZA
 warning: string 'wfcSpnFormat' has no default translation.
-warning: string 'wfcSpnFormat' is missing 41 required localizations: az_AZ be_BY bn_BD bs_BA en_AU en_CA en_GB en_IN en_NZ en_SG en_US eo_EU et_EE eu_ES gl_ES gu_IN hy_AM is_IS ka_GE kk_KZ km_KH kn_IN ky_KG lo_LA mk_MK ml_IN mn_MN mr_IN ms_MY my_MM ne_NP pa_IN si_LK sq_AL ta_IN te_IN ur_PK uz_UZ zh_CN zh_HK zh_TW
-warning: no entries written for dimen/password_keyboard_height (0x010500c8)
+nothing matches overlay file default_wallpaper.png, for flavor hdpi-v4
+nothing matches overlay file default_wallpaper.png, for flavor xhdpi-v4
 nothing matches overlay file default_wallpaper.png, for flavor xxhdpi-v4
+nothing matches overlay file default_wallpaper.png, for flavor xxxhdpi-v4
+[  5% 305/5473] build TARGET_KERNEL_BINARIES
+Building Kernel
+make: Entering directory '/home/rami/android/carbon/kernel/samsung/msm8974'
+  GEN     /home/rami/android/carbon/out/target/product/ks01ltexx/obj/KERNEL_OBJ/Makefile
+scripts/kconfig/conf --silentoldconfig Kconfig
+sound/soc/codecs/audience/Kconfig:40:warning: type of 'SND_SOC_ES_SLIM' redefined from 'boolean' to 'tristate'
+sound/soc/codecs/audience/Kconfig:43:warning: type of 'SND_SOC_ES_I2C' redefined from 'boolean' to 'tristate'
+sound/soc/codecs/audience/Kconfig:44:warning: choice value used outside its choice group
+sound/soc/codecs/audience/Kconfig:41:warning: choice value used outside its choice group
+  GEN     /home/rami/android/carbon/out/target/product/ks01ltexx/obj/KERNEL_OBJ/Makefile
+  CHK     include/linux/version.h
+  Using /home/rami/android/carbon/kernel/samsung/msm8974 as source for kernel
+  CHK     include/generated/utsrelease.h
+make[2]: 'include/generated/mach-types.h' is up to date.
+  CALL    /home/rami/android/carbon/kernel/samsung/msm8974/scripts/checksyscalls.sh
+grep: /home/rami/android/carbon/kernel/samsung/msm8974/scripts/../arch/x86/syscalls/syscall_32.tbl: No such file or directory
+  CHK     include/generated/compile.h
+  Kernel: arch/arm/boot/Image is ready
+  LD      arch/arm/boot/compressed/vmlinux
+  OBJCOPY arch/arm/boot/zImage
+  Kernel: arch/arm/boot/zImage is ready
+make: Leaving directory '/home/rami/android/carbon/kernel/samsung/msm8974'
+Building DTBs
+make: Entering directory '/home/rami/android/carbon/kernel/samsung/msm8974'
+make[2]: Nothing to be done for 'arch/arm/boot/dtbs'.
+make: Leaving directory '/home/rami/android/carbon/kernel/samsung/msm8974'
+Kernel Modules not enabled
 ninja: build stopped: subcommand failed.
 build/core/ninja.mk:166: recipe for target 'ninja_wrapper' failed
 make: *** [ninja_wrapper] Error 1
 
-#### make failed to build some targets (01:39:04 (hh:mm:ss)) ####
+#### make failed to build some targets (19:07 (mm:ss)) ####
 
-I tried to cpopy the /system/lib/hw from device and put them in out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/audio.primary.msm8974_intermediates/LINKED/
+I tried to copy the /system/lib/hw from device and put them in out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/audio.primary.msm8974_intermediates/LINKED/
 and in out/target/product/ks01ltexx/system/lib/hw but to no avail :(
 
