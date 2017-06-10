@@ -9,47 +9,114 @@ WORK IN PROGRESS. WILL EAT YOUR CAT.
 
 ------------------------------------------------------------------
 
-  - For building LineageOS 14.0, create '.repo/local_manifests/roomservice.xml'
+  - For building CarbonROM 5.1, create '.repo/local_manifests/roomservice.xml'
     with the following content:
 
   <?xml version="1.0" encoding="UTF-8"?>
   <manifest>
 
-    <project name="LineageOS/android_hardware_samsung" path="hardware/samsung" remote="github" />
-    <project name="LineageOS/android_packages_resources_devicesettings" path="packages/resources/devicesettings" remote="github" />
+    <project name="LineageOS/android_hardware_samsung" path="hardware/samsung" remote="lineage" />
+    <project name="LineageOS/android_packages_resources_devicesettings" path="packages/resources/devicesettings" remote="lineage" />
 
-    <project name="LineageOS/android_device_qcom_common" path="device/qcom/common" remote="github" />
-    <project name="LineageOS/android_device_samsung_qcom-common" path="device/samsung/qcom-common" remote="github" />
-    <project name="LineageOS/android_device_samsung_msm8974-common" path="device/samsung/msm8974-common" remote="github" />
+    <project name="LineageOS/android_device_qcom_common" path="device/qcom/common" remote="lineage" />
+    <project name="LineageOS/android_device_samsung_qcom-common" path="device/samsung/qcom-common" remote="lineage" />
+    <project name="LineageOS/android_device_samsung_msm8974-common" path="device/samsung/msm8974-common" remote="lineage" />
 
-    <project name="LineageOS/android_external_stlport" path="external/stlport" remote="github" />
+    <project name="LineageOS/android_external_stlport" path="external/stlport" remote="lineage" />
 
-    <project name="RAZERZ/android_kernel_samsung_msm8974" path="kernel/samsung/msm8974" remote="github" />
-    <project name="RAZERZ/android_device_samsung_ks01ltexx" path="device/samsung/ks01ltexx" remote="github" />
-    <project name="RAZERZ/android_vendor_samsung_ks01ltexx" path="vendor/samsung/ks01ltexx" remote="github" />
+    <project name="RAZERZ/android_kernel_samsung_msm8974" path="kernel/samsung/msm8974" remote="lineage" />
+    <project name="RAZERZ/android_device_samsung_ks01ltexx" path="device/samsung/ks01ltexx" remote="lineage" />
+    <project name="RAZERZ/android_vendor_samsung_ks01ltexx" path="vendor/samsung/ks01ltexx" remote="lineage" />
 
   </manifest>
 
 ------------------------------------------------------------------
 
-Inherited from the automatically generated .xml file when building
+Documentation;
 
-<?xml version="1.0" encoding="UTF-8"?>
-<!--Please do not manually edit this file-->
-<manifest>
-  <project name="LineageOS/android_hardware_samsung" path="hardware/samsung" remote="lineage" />
-  <project name="LineageOS/android_packages_resources_devicesettings" path="packages/resources/devicesettings" remote="lineage" />
-  <project name="LineageOS/android_device_qcom_common" path="device/qcom/common" remote="lineage" />
-  <project name="LineageOS/android_device_samsung_qcom-common" path="device/samsung/qcom-common" remote="lineage" />
-  <project name="LineageOS/android_device_samsung_msm8974-common" path="device/samsung/msm8974-common" remote="lineage" />
-  <project name="LineageOS/android_external_stlport" path="external/stlport" remote="lineage" />
-  <project name="RAZERZ/android_kernel_samsung_msm8974" path="kernel/samsung/msm8974" remote="lineage" />
-  <project name="RAZERZ/android_device_samsung_ks01ltexx" path="device/samsung/ks01ltexx" remote="lineage" />
-  <project name="RAZERZ/android_vendor_samsung_ks01ltexx" path="vendor/samsung/ks01ltexx" remote="lineage" />
-  <project name="android_device_samsung_msm8974-common" path="device/samsung/msm8974-common" remote="carbon" revision="cr-5.1" />
-  <project name="android_kernel_samsung_msm8974" path="kernel/samsung/msm8974" remote="carbon" revision="cr-5.1" />
-  <project name="android_external_stlport" path="external/stlport" remote="carbon" revision="cr-5.1" />
-  <project name="android_device_qcom_common" path="device/qcom/common" remote="carbon" revision="cr-5.1" />
-  <project name="android_device_samsung_qcom-common" path="device/samsung/qcom-common" remote="carbon" revision="cr-5.1" />
-</manifest>
+#Initially started with kyasu's source (github.com/kyasu and all of the ks01ltexx sources)
+#but since I had to redo the changes every time I had to repo sync, I created these git repos.
+
+#To make it clear, I am not a device maintainer, I just took kyasu's source, made it compatible
+#with compiling for carbonrom and pushed it to the public.
+
+#Any commits are appreciated :)
+
+Repo sync using kyasu's roomservice.xml didn't work, it complained about github not being recognized
+as a remote, so I repo synced without touching the roomservice.xml and just git cloned his repos.
+
+Renamed the device repos to their respective directory name and moved them to their respective directories
+as stated by the roomservice.xml (see path).
+
+After that, I tried to "port" the tree to work with compiling for carbon, without doing anything,
+the issue was it couldn't recognize the source. I first started with renaming anything that said 'lineage'
+to 'carbon' (example: carbon.dependencies) and tried again. Notice that the commands for building are:
+
+- . build/envsetup.sh
+- lunch carbon_ks01ltexx-userdebug (I used userdebug to get logs from adb in case something messed up)
+- make -j<threads> otapackage (bacon is only used for compiling cyanogenmod/lineage os and running without anything only make will result in just .img files and not a zip)
+
+Still didn't work. I decided to check the files and make sure that the proprietary files they are pointing to
+actually exist. Now the error I got was "couldn't find device carbon_ks01ltexx" but I didn't check this
+until really late.
+
+I started with checking the .dependencies file, it contained the other files needed for compiiling
+and they existed. Refer to the .dependencies file when changing the directories noted in it.
+
+So I opened the full_ks01ltexx.mk and checked that the inheriting files actually existed. Which they did.
+I realized that I had to change device.mk to carbon_ks01ltexx.mk so I did that and edited the full_ks01ltexx.mk to see if that would work, and the results were the same.
+However the common_full_phone.mk wasn't in its directory, and it was refering to vendor/cm which was now called vendor/carbon, so I changed that and copied over the file from lineage's sources
+(That file inherits other files that are somewhat nonexistent, copy them from the same source and you should be good to go)
+
+Still, that didn't work. So I tried renaming device.mk to ks01ltexx.mk and referring this new name in the full_ks01ltexx.mk file, and we made some progress.
+I had to rename the lineage.mk to carbon_ks01ltexx.mk and that spit out a different error. Almost success.
+
+In the vendorsetup.sh file in the root of the device tree, it adds the lineage lunch combo, but we want carbon!
+So I renamed it to carbon_ks01ltexx and tried again, didn't work but from digging around in the vendor folder, I remember seeing another one called the same thing.
+
+I was correct. In vendor/carbon there was indeed a vendorsetup.sh file, so I added, using the same structure as the other devices, ks01ltexx to the list (I added as userdebug and eng)
+
+And now we were getting somewhere, it started compiling but at around 3% it failed to build kernel.
+
+After some research, I fixed the error (don't remember how, that is why documenting is important at the beginning kids!)
+and it started compiling and it made it quite far, it had to compile around 39000 worth of crap,
+and I had made it to a point of only having 5000 files to compile left and it fails at building kernel.
+It is whining about audio files and I tried to adb pull that file and put it in its respective out/ directory
+to no avail :(
+Still working on it though!
+
+Here is the full output of the error:
+
+
+FAILED: /home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/audio.primary.msm8974_intermediates/LINKED/audio.primary.msm8974.so 
+/bin/bash -c "(echo \"target SharedLib: audio.primary.msm8974 (/home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/audio.primary.msm8974_intermediates/LINKED/audio.primary.msm8974.so)\" ) && (mkdir -p /home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/audio.primary.msm8974_intermediates/LINKED/ ) && (/usr/bin/ccache prebuilts/clang/host/linux-x86/clang-2690385/bin/clang++ -nostdlib -Wl,-soname,audio.primary.msm8974.so -Wl,--gc-sections -shared  -L/home/rami/android/carbon/out/target/product/ks01ltexx/obj/lib /home/rami/android/carbon/out/target/product/ks01ltexx/obj/lib/crtbegin_so.o             /home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/audio.primary.msm8974_intermediates/audio_hw.o /home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/audio.primary.msm8974_intermediates/voice.o /home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/audio.primary.msm8974_intermediates/platform_info.o /home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/audio.primary.msm8974_intermediates/msm8974/platform.o /home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/audio.primary.msm8974_intermediates/audio_extn/audio_extn.o /home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/audio.primary.msm8974_intermediates/audio_extn/hfp.o /home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/audio.primary.msm8974_intermediates/voice_extn/compress_voip.o /home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/audio.primary.msm8974_intermediates/msm8974/hw_info.o        -Wl,--whole-archive   -Wl,--no-whole-archive   /home/rami/android/carbon/out/target/product/ks01ltexx/obj/STATIC_LIBRARIES/libunwind_llvm_intermediates/libunwind_llvm.a /home/rami/android/carbon/out/target/product/ks01ltexx/obj/STATIC_LIBRARIES/libcompiler_rt-extras_intermediates/libcompiler_rt-extras.a   prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/bin/../lib/gcc/arm-linux-androideabi/4.9/../../../../arm-linux-androideabi/lib/libatomic.a prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/bin/../lib/gcc/arm-linux-androideabi/4.9/libgcc.a -llog -lcutils -lhardware -ltinyalsa -ltinycompress -laudioroute -ldl -lexpat -lc++ -ldl -lc -lm  -o /home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/audio.primary.msm8974_intermediates/LINKED/audio.primary.msm8974.so   -Wl,-z,noexecstack -Wl,-z,relro -Wl,-z,now -Wl,--build-id=md5 -Wl,--warn-shared-textrel -Wl,--fatal-warnings -Wl,--icf=safe -Wl,--hash-style=gnu -Wl,--no-undefined-version -Wl,--no-fix-cortex-a8    -target arm-linux-androideabi -Bprebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/arm-linux-androideabi/bin   -Wl,--exclude-libs,libunwind_llvm.a -Wl,--no-undefined /home/rami/android/carbon/out/target/product/ks01ltexx/obj/lib/crtend_so.o )"
+target SharedLib: audio.primary.msm8974 (/home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/audio.primary.msm8974_intermediates/LINKED/audio.primary.msm8974.so)
+hardware/qcom/audio-caf/msm8974/hal/audio_hw.c:2112: error: undefined reference to 'compress_set_next_track_param'
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+[ 43% 9693/22139] build /home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/libalsautils_intermediates/alsa_device_profile.o
+target thumb C: libalsautils <= system/media/alsa_utils/alsa_device_profile.c
+[ 43% 9693/22139] build /home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/audio.usb.default_intermediates/audio_hal.o
+target thumb C: audio.usb.default <= hardware/libhardware/modules/usbaudio/audio_hal.c
+[ 43% 9693/22139] build /home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/audio.r_submix.default_intermediates/audio_hw.o
+target thumb C++: audio.r_submix.default <= hardware/libhardware/modules/audio_remote_submix/audio_hw.cpp
+[ 43% 9693/22139] build /home/rami/android/carbon/out/target/common/obj/JAVA_LIBRARIES/services.core_intermediates/classes.jack
+Building with Jack: /home/rami/android/carbon/out/target/common/obj/JAVA_LIBRARIES/services.core_intermediates/classes.jack
+[ 43% 9693/22139] build /home/rami/android/carbon/out/target/product/ks01ltexx/obj/APPS/framework-res_intermediates/package.apk
+target Package: framework-res (/home/rami/android/carbon/out/target/product/ks01ltexx/obj/APPS/framework-res_intermediates/package.apk)
+warning: string 'candidates_style' has no default translation.
+warning: string 'candidates_style' is missing 41 required localizations: az_AZ be_BY bn_BD bs_BA en_AU en_CA en_GB en_IN en_NZ en_SG en_US eo_EU et_EE eu_ES gl_ES gu_IN hy_AM is_IS ka_GE kk_KZ km_KH kn_IN ky_KG lo_LA mk_MK ml_IN mn_MN mr_IN ms_MY my_MM ne_NP pa_IN si_LK sq_AL ta_IN te_IN ur_PK uz_UZ zh_CN zh_HK zh_TW
+warning: string 'gsm_alphabet_default_charset' has no default translation.
+warning: string 'gsm_alphabet_default_charset' is missing 90 required localizations: af_ZA am_ET ar_EG az_AZ be_BY bg_BG bn_BD bs_BA ca_ES cs_CZ da_DK de_AT de_CH de_DE de_LI el_GR en_AU en_CA en_GB en_IN en_NZ en_SG en_US eo_EU es_ES es_US et_EE eu_ES fa_IR fi_FI fr_BE fr_CA fr_CH fr_FR gl_ES gu_IN hi_IN hr_HR hu_HU hy_AM in_ID is_IS it_CH it_IT iw_IL ja_JP ka_GE kk_KZ km_KH kn_IN ky_KG lo_LA lt_LT lv_LV mk_MK ml_IN mn_MN mr_IN ms_MY my_MM nb_NO ne_NP nl_BE nl_NL pa_IN pl_PL pt_BR pt_PT ro_RO ru_RU si_LK sk_SK sl_SI sq_AL sr_RS sv_SE sw_TZ ta_IN te_IN th_TH tl_PH tr_TR uk_UA ur_PK uz_UZ vi_VN zh_CN zh_HK zh_TW zu_ZA
+warning: string 'wfcSpnFormat' has no default translation.
+warning: string 'wfcSpnFormat' is missing 41 required localizations: az_AZ be_BY bn_BD bs_BA en_AU en_CA en_GB en_IN en_NZ en_SG en_US eo_EU et_EE eu_ES gl_ES gu_IN hy_AM is_IS ka_GE kk_KZ km_KH kn_IN ky_KG lo_LA mk_MK ml_IN mn_MN mr_IN ms_MY my_MM ne_NP pa_IN si_LK sq_AL ta_IN te_IN ur_PK uz_UZ zh_CN zh_HK zh_TW
+warning: no entries written for dimen/password_keyboard_height (0x010500c8)
+nothing matches overlay file default_wallpaper.png, for flavor xxhdpi-v4
+ninja: build stopped: subcommand failed.
+build/core/ninja.mk:166: recipe for target 'ninja_wrapper' failed
+make: *** [ninja_wrapper] Error 1
+
+#### make failed to build some targets (01:39:04 (hh:mm:ss)) ####
+
+I tried to cpopy the /system/lib/hw from device and put them in out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/audio.primary.msm8974_intermediates/LINKED/
+and in out/target/product/ks01ltexx/system/lib/hw but to no avail :(
 
