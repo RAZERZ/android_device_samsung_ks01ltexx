@@ -24,6 +24,7 @@ WORK IN PROGRESS. WILL EAT YOUR CAT. MOST LIKELY WILL PET IT THO.
   <project name="RAZERZ/msm8974-common" path="device/samsung/msm8974-common" remote="lineage" />
   <project name="RAZERZ/qcom-common" path="device/samsung/qcom-common" remote="lineage" />
   <project name="RAZERZ/qcom_common" path="device/qcom/common" remote="lineage" />
+  <project name="RAZERZ/hardware_qcom_audio-caf" path="hardware/qcom/audio-caf" remote="lineage" />
 
 <!-- Inherited from kyau's roomservice.xml  -->
   <project name="LineageOS/android_hardware_samsung" path="hardware/samsung" remote="lineage" />
@@ -31,6 +32,7 @@ WORK IN PROGRESS. WILL EAT YOUR CAT. MOST LIKELY WILL PET IT THO.
 
 <!-- Written from default  -->
   <project name="android_external_stlport" path="external/stlport" remote="carbon" revision="cr-5.1" />
+
 </manifest>
 
 ------------------------------------------------------------------
@@ -90,63 +92,47 @@ Still working on it though!
 
 Here is the full output of the error:
 
-FAILED: /home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/audio.primary.msm8974_intermediates/LINKED/audio.primary.msm8974.so 
-/bin/bash -c "(echo \"target SharedLib: audio.primary.msm8974 (/home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/audio.primary.msm8974_intermediates/LINKED/audio.primary.msm8974.so)\" ) && (mkdir -p /home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/audio.primary.msm8974_intermediates/LINKED/ ) && (/usr/bin/ccache prebuilts/clang/host/linux-x86/clang-2690385/bin/clang++ -nostdlib -Wl,-soname,audio.primary.msm8974.so -Wl,--gc-sections -shared  -L/home/rami/android/carbon/out/target/product/ks01ltexx/obj/lib /home/rami/android/carbon/out/target/product/ks01ltexx/obj/lib/crtbegin_so.o             /home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/audio.primary.msm8974_intermediates/audio_hw.o /home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/audio.primary.msm8974_intermediates/voice.o /home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/audio.primary.msm8974_intermediates/platform_info.o /home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/audio.primary.msm8974_intermediates/msm8974/platform.o /home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/audio.primary.msm8974_intermediates/audio_extn/audio_extn.o /home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/audio.primary.msm8974_intermediates/audio_extn/hfp.o /home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/audio.primary.msm8974_intermediates/voice_extn/compress_voip.o /home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/audio.primary.msm8974_intermediates/msm8974/hw_info.o        -Wl,--whole-archive   -Wl,--no-whole-archive   /home/rami/android/carbon/out/target/product/ks01ltexx/obj/STATIC_LIBRARIES/libunwind_llvm_intermediates/libunwind_llvm.a /home/rami/android/carbon/out/target/product/ks01ltexx/obj/STATIC_LIBRARIES/libcompiler_rt-extras_intermediates/libcompiler_rt-extras.a   prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/bin/../lib/gcc/arm-linux-androideabi/4.9/../../../../arm-linux-androideabi/lib/libatomic.a prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/bin/../lib/gcc/arm-linux-androideabi/4.9/libgcc.a -llog -lcutils -lhardware -ltinyalsa -ltinycompress -laudioroute -ldl -lexpat -lc++ -ldl -lc -lm  -o /home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/audio.primary.msm8974_intermediates/LINKED/audio.primary.msm8974.so   -Wl,-z,noexecstack -Wl,-z,relro -Wl,-z,now -Wl,--build-id=md5 -Wl,--warn-shared-textrel -Wl,--fatal-warnings -Wl,--icf=safe -Wl,--hash-style=gnu -Wl,--no-undefined-version -Wl,--no-fix-cortex-a8    -target arm-linux-androideabi -Bprebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/arm-linux-androideabi/bin   -Wl,--exclude-libs,libunwind_llvm.a -Wl,--no-undefined /home/rami/android/carbon/out/target/product/ks01ltexx/obj/lib/crtend_so.o )"
-target SharedLib: audio.primary.msm8974 (/home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/audio.primary.msm8974_intermediates/LINKED/audio.primary.msm8974.so)
-hardware/qcom/audio-caf/msm8974/hal/audio_hw.c:2112: error: undefined reference to 'compress_set_next_track_param'
-clang++: error: linker command failed with exit code 1 (use -v to see invocation)
-[  5% 305/5473] build /home/rami/android/carbon/out/host/common/obj/JAVA_LIBRARIES/ahat_intermediates/classes-full-debug.jar
-host Java: ahat (/home/rami/android/carbon/out/host/common/obj/JAVA_LIBRARIES/ahat_intermediates/classes)
-Note: Some input files use unchecked or unsafe operations.
-Note: Recompile with -Xlint:unchecked for details.
-[  5% 305/5473] build /home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/libwifi-service_intermediates/jni/jni_helper.o
-target thumb C++: libwifi-service <= frameworks/opt/net/wifi/service/jni/jni_helper.cpp
-[  5% 305/5473] build /home/rami/android/carbon/out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/libwifi-service_intermediates/jni/com_android_server_wifi_WifiNative.o
-target thumb C++: libwifi-service <= frameworks/opt/net/wifi/service/jni/com_android_server_wifi_WifiNative.cpp
-[  5% 305/5473] build /home/rami/android/carbon/out/target/common/obj/APPS/framework-res_intermediates/package-export.apk
-target Export Resources: framework-res (/home/rami/android/carbon/out/target/common/obj/APPS/framework-res_intermediates/package-export.apk)
-warning: string 'candidates_style' has no default translation.
-warning: string 'gsm_alphabet_default_charset' has no default translation.
-warning: string 'wfcSpnFormat' has no default translation.
-nothing matches overlay file default_wallpaper.png, for flavor hdpi-v4
-nothing matches overlay file default_wallpaper.png, for flavor xhdpi-v4
-nothing matches overlay file default_wallpaper.png, for flavor xxhdpi-v4
-nothing matches overlay file default_wallpaper.png, for flavor xxxhdpi-v4
-[  5% 305/5473] build TARGET_KERNEL_BINARIES
-Building Kernel
-make: Entering directory '/home/rami/android/carbon/kernel/samsung/msm8974'
-  GEN     /home/rami/android/carbon/out/target/product/ks01ltexx/obj/KERNEL_OBJ/Makefile
-scripts/kconfig/conf --silentoldconfig Kconfig
-sound/soc/codecs/audience/Kconfig:40:warning: type of 'SND_SOC_ES_SLIM' redefined from 'boolean' to 'tristate'
-sound/soc/codecs/audience/Kconfig:43:warning: type of 'SND_SOC_ES_I2C' redefined from 'boolean' to 'tristate'
-sound/soc/codecs/audience/Kconfig:44:warning: choice value used outside its choice group
-sound/soc/codecs/audience/Kconfig:41:warning: choice value used outside its choice group
-  GEN     /home/rami/android/carbon/out/target/product/ks01ltexx/obj/KERNEL_OBJ/Makefile
-  CHK     include/linux/version.h
-  Using /home/rami/android/carbon/kernel/samsung/msm8974 as source for kernel
-  CHK     include/generated/utsrelease.h
-make[2]: 'include/generated/mach-types.h' is up to date.
-  CALL    /home/rami/android/carbon/kernel/samsung/msm8974/scripts/checksyscalls.sh
-grep: /home/rami/android/carbon/kernel/samsung/msm8974/scripts/../arch/x86/syscalls/syscall_32.tbl: No such file or directory
-  CHK     include/generated/compile.h
-  Kernel: arch/arm/boot/Image is ready
-  LD      arch/arm/boot/compressed/vmlinux
-  OBJCOPY arch/arm/boot/zImage
-  Kernel: arch/arm/boot/zImage is ready
-make: Leaving directory '/home/rami/android/carbon/kernel/samsung/msm8974'
-Building DTBs
-make: Entering directory '/home/rami/android/carbon/kernel/samsung/msm8974'
-make[2]: Nothing to be done for 'arch/arm/boot/dtbs'.
-make: Leaving directory '/home/rami/android/carbon/kernel/samsung/msm8974'
-Kernel Modules not enabled
-ninja: build stopped: subcommand failed.
-build/core/ninja.mk:166: recipe for target 'ninja_wrapper' failed
-make: *** [ninja_wrapper] Error 1
-
-#### make failed to build some targets (19:07 (mm:ss)) ####
+<CHECK BELOW>
 
 I tried to copy the /system/lib/hw from device and put them in out/target/product/ks01ltexx/obj/SHARED_LIBRARIES/audio.primary.msm8974_intermediates/LINKED/
 and in out/target/product/ks01ltexx/system/lib/hw but to no avail :(
 
 Trying to repo sync since a lot of crap has happened lately that could have caused that issue.
 Also, reading upon the documentation, I will need to run "make carbon" instead of "make otapackage". Interesting
+
+Finished repo syncing and got all the files updated and I overwrote some local stuff such as, I had edited a couple lines of codes
+in hardware/samsung, but I overwrote them with the LineageOS ones instead.
+
+Tried again, same error:
+
+<REMOVED ERROR FIXED>
+
+Trying to comment "LOCAL_MODULE" in hardware/qcom/audio-caf/msm8974/hal/Android.mk
+and will try again.
+
+Nope didn't work (quite obviously)
+
+added CarbonROM's own audio-caf repo to roomservice.xml, testing build now. 
+https://github.com/Carbon2011/android_hardware_qcom_audio-caf
+
+Tbh looks like audio-caf is deprecated.
+I might try to remove the directory and build command (from where ever it complains when removing the directory) and try without it.
+
+Added the Carbon audio-caf sources to own github, so that I can have cm-14.1 as branch and have remote="lineage".
+^^This fixed it, added it to the roomservice.xml 
+
+And a new error has appeared;
+
+[ 34% 1864/5417] build /home/rami/andr.../SamsungDoze_intermediates/src/R.stamp
+FAILED: /home/rami/android/carbon/out/target/common/obj/APPS/SamsungDoze_intermediates/src/R.stamp 
+/bin/bash -c "(echo \"target R.java/Manifest.java: SamsungDoze (/home/rami/android/carbon/out/target/common/obj/APPS/SamsungDoze_intermediates/src/R.stamp)\" ) && (rm -rf /home/rami/android/carbon/out/target/common/obj/APPS/SamsungDoze_intermediates/src/R.stamp && mkdir -p /home/rami/android/carbon/out/target/common/obj/APPS/SamsungDoze_intermediates/src/ ) && (mkdir -p /home/rami/android/carbon/out/target/common/obj/APPS/SamsungDoze_intermediates/src ) && (mkdir -p /home/rami/android/carbon/out/target/common/obj/APPS/SamsungDoze_intermediates/ ) && (/home/rami/android/carbon/out/host/linux-x86/bin/aapt package --auto-add-overlay --auto-add-overlay -z --extra-packages android.support.v14.preference:android.support.v7.appcompat:android.support.v7.preference:android.support.v7.recyclerview:com.android.settingslib  --pseudo-localize -m  -J /home/rami/android/carbon/out/target/common/obj/APPS/SamsungDoze_intermediates/src -M device/samsung/qcom-common/doze/AndroidManifest.xml -P /home/rami/android/carbon/out/target/common/obj/APPS/SamsungDoze_intermediates/public_resources.xml -S device/samsung/qcom-common/doze/res -S device/samsung/qcom-common/doze/../../../../packages/resources/devicesettings/res -S frameworks/support/v14/preference/res -S frameworks/support/v7/appcompat/res -S frameworks/support/v7/preference/res -S frameworks/support/v7/recyclerview/res -S frameworks/base/packages/SettingsLib/res  -I /home/rami/android/carbon/out/target/common/obj/APPS/framework-res_intermediates/package-export.apk -G /home/rami/android/carbon/out/target/common/obj/APPS/SamsungDoze_intermediates/proguard_options --min-sdk-version 25 --target-sdk-version 25 --version-code 25 --version-name 7.1.2   --skip-symbols-without-default-localization ) && (for GENERATED_MANIFEST_FILE in \`find /home/rami/android/carbon/out/target/common/obj/APPS/SamsungDoze_intermediates/src -name Manifest.java 2> /dev/null\`; do dir=\`awk '/package/{gsub(/\\./,\"/\",\$2);gsub(/;/,\"\",\$2);print \$2;exit}' \$GENERATED_MANIFEST_FILE\`; mkdir -p /home/rami/android/carbon/out/target/common/R/\$dir; prebuilts/build-tools/linux-x86/bin/acp -fp \$GENERATED_MANIFEST_FILE /home/rami/android/carbon/out/target/common/R/\$dir; done ) && (for GENERATED_R_FILE in \`find /home/rami/android/carbon/out/target/common/obj/APPS/SamsungDoze_intermediates/src -name R.java 2> /dev/null\`; do dir=\`awk '/package/{gsub(/\\./,\"/\",\$2);gsub(/;/,\"\",\$2);print \$2;exit}' \$GENERATED_R_FILE\`; mkdir -p /home/rami/android/carbon/out/target/common/R/\$dir; prebuilts/build-tools/linux-x86/bin/acp -fp \$GENERATED_R_FILE /home/rami/android/carbon/out/target/common/R/\$dir || exit 31; prebuilts/build-tools/linux-x86/bin/acp -fp \$GENERATED_R_FILE /home/rami/android/carbon/out/target/common/obj/APPS/SamsungDoze_intermediates/src/R.stamp || exit 32; done ) && (touch /home/rami/android/carbon/out/target/common/obj/APPS/SamsungDoze_intermediates/src/R.stamp )"
+target R.java/Manifest.java: SamsungDoze (/home/rami/android/carbon/out/target/common/obj/APPS/SamsungDoze_intermediates/src/R.stamp)
+ERROR: resource directory 'device/samsung/qcom-common/doze/../../../../packages/resources/devicesettings/res' does not exist
+ninja: build stopped: subcommand failed.
+build/core/ninja.mk:166: recipe for target 'ninja_wrapper' failed
+make: *** [ninja_wrapper] Error 1
+
+#### make failed to build some targets (01:22:31 (hh:mm:ss)) ####
+
+Seems like packages/resources/devicesettings was removed somehow. Will try to sync again.
+Cloned LineageOS/android_packages_resources_devicesettings and placed it in packages/resources/devicesettings
