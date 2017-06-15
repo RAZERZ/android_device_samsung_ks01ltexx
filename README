@@ -131,3 +131,7 @@ Cloned LineageOS/android_packages_resources_devicesettings and placed it in pack
 //Side note; seems like external/stlport doesn't exist either lol, added it via git clone
 
 And what do you know it worked!
+
+Actually, seems like it didn't compile kernel, I checked the kernel dir and it was 
+kernel/samsung* and not kernel/samsung/msm8974*
+Will try to build with the correct directories now and hopefully it doesn't mess up :)
