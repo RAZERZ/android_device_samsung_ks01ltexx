@@ -9,7 +9,8 @@ WORK IN PROGRESS. WILL EAT YOUR CAT. MOST LIKELY WILL PET IT THO.
 
 ------------------------------------------------------------------
 
-  - What I use when building carbon, note that if you want to use remote="github" you have to change it to remote="lineage":
+  - What I use when building carbon, note that if you want to use remote="github" you have to change it to remote="gh", or do as I do,
+create repo and make the master branch's name be cm-14.1, anyways, here's the roomservice.xml:
 
 <?xml version="1.0" encoding="UTF-8"?>
 <!--Please do not manually edit this file-->
@@ -20,7 +21,7 @@ WORK IN PROGRESS. WILL EAT YOUR CAT. MOST LIKELY WILL PET IT THO.
   <project name="RAZERZ/android_kernel_samsung_msm8974" path="kernel/samsung_msm8974" remote="lineage" />
   <project name="RAZERZ/android_device_samsung_ks01ltexx" path="device/samsung/ks01ltexx" remote="lineage" />
 
-<!-- Synced from own sources  -->
+<!-- Other crap that is needed which I have on my github  -->
   <project name="RAZERZ/msm8974-common" path="device/samsung/msm8974-common" remote="lineage" />
   <project name="RAZERZ/qcom-common" path="device/samsung/qcom-common" remote="lineage" />
   <project name="RAZERZ/qcom_common" path="device/qcom/common" remote="lineage" />
@@ -37,7 +38,7 @@ WORK IN PROGRESS. WILL EAT YOUR CAT. MOST LIKELY WILL PET IT THO.
 
 ------------------------------------------------------------------
 
-Documentation;
+Documentation (a frickin essay on what I did);
 
 #Initially started with kyasu's source (github.com/kyasu and all of the ks01ltexx sources)
 #but since I had to redo the changes every time I had to repo sync, I created these git repos.
@@ -59,7 +60,7 @@ to 'carbon' (example: carbon.dependencies) and tried again. Notice that the comm
 
 - . build/envsetup.sh
 - lunch carbon_ks01ltexx-userdebug (I used userdebug to get logs from adb in case something messed up)
-- make -j<threads> otapackage (bacon is only used for compiling cyanogenmod/lineage os and running without anything only make will result in just .img files and not a zip)
+- make carbon -j<threads> (bacon is only used for compiling cyanogenmod/lineage os and running without anything only make will result in just .img files and not a zip)
 
 Still didn't work. I decided to check the files and make sure that the proprietary files they are pointing to
 actually exist. Now the error I got was "couldn't find device carbon_ks01ltexx" but I didn't check this
@@ -123,16 +124,10 @@ Added the Carbon audio-caf sources to own github, so that I can have cm-14.1 as 
 
 And a new error has appeared;
 
-[ 34% 1864/5417] build /home/rami/andr.../SamsungDoze_intermediates/src/R.stamp
-FAILED: /home/rami/android/carbon/out/target/common/obj/APPS/SamsungDoze_intermediates/src/R.stamp 
-/bin/bash -c "(echo \"target R.java/Manifest.java: SamsungDoze (/home/rami/android/carbon/out/target/common/obj/APPS/SamsungDoze_intermediates/src/R.stamp)\" ) && (rm -rf /home/rami/android/carbon/out/target/common/obj/APPS/SamsungDoze_intermediates/src/R.stamp && mkdir -p /home/rami/android/carbon/out/target/common/obj/APPS/SamsungDoze_intermediates/src/ ) && (mkdir -p /home/rami/android/carbon/out/target/common/obj/APPS/SamsungDoze_intermediates/src ) && (mkdir -p /home/rami/android/carbon/out/target/common/obj/APPS/SamsungDoze_intermediates/ ) && (/home/rami/android/carbon/out/host/linux-x86/bin/aapt package --auto-add-overlay --auto-add-overlay -z --extra-packages android.support.v14.preference:android.support.v7.appcompat:android.support.v7.preference:android.support.v7.recyclerview:com.android.settingslib  --pseudo-localize -m  -J /home/rami/android/carbon/out/target/common/obj/APPS/SamsungDoze_intermediates/src -M device/samsung/qcom-common/doze/AndroidManifest.xml -P /home/rami/android/carbon/out/target/common/obj/APPS/SamsungDoze_intermediates/public_resources.xml -S device/samsung/qcom-common/doze/res -S device/samsung/qcom-common/doze/../../../../packages/resources/devicesettings/res -S frameworks/support/v14/preference/res -S frameworks/support/v7/appcompat/res -S frameworks/support/v7/preference/res -S frameworks/support/v7/recyclerview/res -S frameworks/base/packages/SettingsLib/res  -I /home/rami/android/carbon/out/target/common/obj/APPS/framework-res_intermediates/package-export.apk -G /home/rami/android/carbon/out/target/common/obj/APPS/SamsungDoze_intermediates/proguard_options --min-sdk-version 25 --target-sdk-version 25 --version-code 25 --version-name 7.1.2   --skip-symbols-without-default-localization ) && (for GENERATED_MANIFEST_FILE in \`find /home/rami/android/carbon/out/target/common/obj/APPS/SamsungDoze_intermediates/src -name Manifest.java 2> /dev/null\`; do dir=\`awk '/package/{gsub(/\\./,\"/\",\$2);gsub(/;/,\"\",\$2);print \$2;exit}' \$GENERATED_MANIFEST_FILE\`; mkdir -p /home/rami/android/carbon/out/target/common/R/\$dir; prebuilts/build-tools/linux-x86/bin/acp -fp \$GENERATED_MANIFEST_FILE /home/rami/android/carbon/out/target/common/R/\$dir; done ) && (for GENERATED_R_FILE in \`find /home/rami/android/carbon/out/target/common/obj/APPS/SamsungDoze_intermediates/src -name R.java 2> /dev/null\`; do dir=\`awk '/package/{gsub(/\\./,\"/\",\$2);gsub(/;/,\"\",\$2);print \$2;exit}' \$GENERATED_R_FILE\`; mkdir -p /home/rami/android/carbon/out/target/common/R/\$dir; prebuilts/build-tools/linux-x86/bin/acp -fp \$GENERATED_R_FILE /home/rami/android/carbon/out/target/common/R/\$dir || exit 31; prebuilts/build-tools/linux-x86/bin/acp -fp \$GENERATED_R_FILE /home/rami/android/carbon/out/target/common/obj/APPS/SamsungDoze_intermediates/src/R.stamp || exit 32; done ) && (touch /home/rami/android/carbon/out/target/common/obj/APPS/SamsungDoze_intermediates/src/R.stamp )"
-target R.java/Manifest.java: SamsungDoze (/home/rami/android/carbon/out/target/common/obj/APPS/SamsungDoze_intermediates/src/R.stamp)
-ERROR: resource directory 'device/samsung/qcom-common/doze/../../../../packages/resources/devicesettings/res' does not exist
-ninja: build stopped: subcommand failed.
-build/core/ninja.mk:166: recipe for target 'ninja_wrapper' failed
-make: *** [ninja_wrapper] Error 1
-
-#### make failed to build some targets (01:22:31 (hh:mm:ss)) ####
 
 Seems like packages/resources/devicesettings was removed somehow. Will try to sync again.
 Cloned LineageOS/android_packages_resources_devicesettings and placed it in packages/resources/devicesettings
+
+//Side note; seems like external/stlport doesn't exist either lol, added it via git clone
+
+And what do you know it worked!
