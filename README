@@ -30,6 +30,7 @@ create repo and make the master branch's name be cm-14.1, anyways, here's the ro
 <!-- Inherited from kyau's roomservice.xml  -->
   <project name="LineageOS/android_hardware_samsung" path="hardware/samsung" remote="lineage" />
   <project name="LineageOS/android_packages_resources_devicesettings" path="packages/resources/devicesettings" remote="lineage" />
+  <project name="LineageOS/android_packages_apps_FlipFlap" path="packages/apps/FlipFlap" remote="github" />
 
 <!-- Written from default  -->
   <project name="android_external_stlport" path="external/stlport" remote="carbon" revision="cr-5.1" />
