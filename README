@@ -25,12 +25,11 @@ create repo and make the master branch's name be cm-14.1, anyways, here's the ro
   <project name="RAZERZ/msm8974-common" path="device/samsung/msm8974-common" remote="lineage" />
   <project name="RAZERZ/qcom-common" path="device/samsung/qcom-common" remote="lineage" />
   <project name="RAZERZ/qcom_common" path="device/qcom/common" remote="lineage" />
-  <project name="RAZERZ/hardware_qcom_audio-caf" path="hardware/qcom/audio-caf" remote="lineage" />
 
 <!-- Inherited from kyau's roomservice.xml  -->
   <project name="LineageOS/android_hardware_samsung" path="hardware/samsung" remote="lineage" />
   <project name="LineageOS/android_packages_resources_devicesettings" path="packages/resources/devicesettings" remote="lineage" />
-  <project name="LineageOS/android_packages_apps_FlipFlap" path="packages/apps/FlipFlap" remote="github" />
+  <project name="LineageOS/android_packages_apps_FlipFlap" path="packages/apps/FlipFlap" remote="lineage" />
 
 <!-- Written from default  -->
   <project name="android_external_stlport" path="external/stlport" remote="carbon" revision="cr-5.1" />
