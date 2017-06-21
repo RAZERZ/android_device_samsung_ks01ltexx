@@ -6,6 +6,7 @@ Device configuration for Samsung Galaxy S4 LTE-A (GT-I9506).
 WORK IN PROGRESS. WILL EAT YOUR CAT. MOST LIKELY WILL PET IT THO.
 
 //TODO: Copy roomservice.xml for .repo/local_manifests to comply with carbonroms strange remotes (it ain't even remotely funny)
+//TODO: Make a script that automates the device tree compatibility with the ROM, this way, we can use kyasu's source directly
 
 ------------------------------------------------------------------
 
