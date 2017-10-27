@@ -3,27 +3,34 @@ Copyright 2015-2016 - The CyanogenMod Project
 
 Device configuration for Samsung Galaxy S4 LTE-A (GT-I9506).
 
-WORK IN PROGRESS. WILL EAT YOUR CAT.
+WORK IN PROGRESS. WILL EAT YOUR CAT. MOST LIKELY WILL PET IT THO.
+
+Recommended manifest for compiling lineage os 15 for ks01ltexx. This is unfinishes, I wouldn't even call if alpha stage but it is there if anyone wants to pick up after me.
+Create '.repo/local_manifest/roomservice.xml with the following content:
 ------------------------------------------------------------------
 
-  - For building LineageOS 14.0, create '.repo/local_manifests/roomservice.xml'
-    with the following content:
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Please do not manually edit this file-->
+<manifest>
 
-  <?xml version="1.0" encoding="UTF-8"?>
-  <manifest>
+<!-- Device files  -->
+  <project name="RAZERZ/android_vendor_samsung_ks01ltexx" path="vendor/samsung/ks01ltexx" remote="lineage" />
+  <project name="RAZERZ/android_kernel_samsung_msm8974" path="kernel/samsung_msm8974" remote="lineage" />
+  <project name="RAZERZ/android_device_samsung_ks01ltexx" path="device/samsung/ks01ltexx" remote="lineage" />
 
-    <project name="LineageOS/android_hardware_samsung" path="hardware/samsung" remote="github" />
-    <project name="LineageOS/android_packages_resources_devicesettings" path="packages/resources/devicesettings" remote="github" />
-    <project name="LineageOS/android_packages_apps_FlipFlap" path="packages/apps/FlipFlap" remote="github" />
+  <project name="LineageOS/android_device_qcom_common" path="device/qcom/common" remote="github" />
+  <project name="LineageOS/android_device_samsung_qcom-common" path="device/samsung/qcom-common" remote="github" />
+  <project name="LineageOS/android_device_samsung_msm8974-common" path="device/samsung/msm8974-common" remote="github" />
 
-    <project name="LineageOS/android_device_qcom_common" path="device/qcom/common" remote="github" />
-    <project name="LineageOS/android_device_samsung_qcom-common" path="device/samsung/qcom-common" remote="github" />
-    <project name="LineageOS/android_device_samsung_msm8974-common" path="device/samsung/msm8974-common" remote="github" />
+<!-- Inherited from kyau's roomservice.xml  -->
+  <project name="LineageOS/android_hardware_samsung" path="hardware/samsung" remote="lineage" />
+  <project name="LineageOS/android_packages_resources_devicesettings" path="packages/resources/devicesettings" remote="lineage" />
+  <project name="LineageOS/android_packages_apps_FlipFlap" path="packages/apps/FlipFlap" remote="lineage" /> <!-- This could be left out due to compiler errors  -->
 
-    <project name="LineageOS/android_external_stlport" path="external/stlport" remote="github" />
+<!-- Written from default  -->
 
-    <project name="kyasu/android_kernel_samsung_msm8974" path="kernel/samsung/msm8974" remote="github" />
-    <project name="kyasu/android_device_samsung_ks01ltexx" path="device/samsung/ks01ltexx" remote="github" />
-    <project name="kyasu/android_vendor_samsung_ks01ltexx" path="vendor/samsung/ks01ltexx" remote="github" />
+  <project name="LineageOS/android_external_stlport" path="external/stlport" remote="github" />
 
-  </manifest>
+</manifest>
+
+------------------------------------------------------------------
