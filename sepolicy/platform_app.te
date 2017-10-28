@@ -1,5 +1,5 @@
 allow platform_app exfat:dir create_dir_perms;
-allow platform_app exfat:file create_file_perms;
+#allow platform_app exfat:file create_file_perms; Possible cause of a compiler error
 allow platform_app fuseblk:dir create_dir_perms;
 allow platform_app fuseblk:file create_file_perms;
 allow platform_app sdcard_posix:dir create_dir_perms;
