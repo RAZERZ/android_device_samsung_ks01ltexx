@@ -31,7 +31,7 @@ TARGET_USE_SDCLANG := true
 
 # Kernel
 BOARD_KERNEL_BASE := 0x00000000
-BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
+BOARD_KERNEL_IMAGE_NAME := zImage-dtb #Inherited from kernel/samsung/msm8974/arch/arm/boot/zImage
 BOARD_KERNEL_CMDLINE := console=null androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x3F androidboot.bootdevice=msm_sdcc.1 zcache.enabled=1
 ifeq ($(RECOVERY_VARIANT),twrp)
 BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
