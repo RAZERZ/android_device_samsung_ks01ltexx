@@ -5,7 +5,7 @@ Device configuration for Samsung Galaxy S4 LTE-A (GT-I9506).
 
 WORK IN PROGRESS. WILL EAT YOUR CAT. MOST LIKELY WILL PET IT THO.
 
-Recommended manifest for compiling lineage os 15 for ks01ltexx. This is unfinishes, I wouldn't even call if alpha stage but it is there if anyone wants to pick up after me.
+Recommended manifest for compiling lineage os 15 for ks01ltexx. This is unfinished, I wouldn't even call if alpha stage but it is there if anyone wants to pick up after me.
 Create '.repo/local_manifest/roomservice.xml with the following content:
 ------------------------------------------------------------------
 
